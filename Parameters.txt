@@ -1,0 +1,45 @@
+Parameters:
+
+filesToRun - saves all the folders name (which require processing) in the path.
+fileStartInd - always 3, since the first 2 files in filesToRun are system files so need to be skipped.
+fileInd - Index that runs from fileStartInd through the number of files
+scanLabel - saves the name of the file, for example: 'MousePre 0001'
+xmlHeader - saves all the scan prefrences
+pixX, pixY, pixY - pixel size of the scan
+ascanAve - how many A scan avg where done
+bscanAve - how many B scan avg where done
+scanMode - Bscan, 3D, etc.
+frames2Avg - [] for 2D, 6 for 3D
+outputFrameNum -  1 for 2D, NumberofYpixels/6 for 3D
+
+signalBuff - Raw OCT Intensity signal
+bandBuff - 
+rawSpeckVarBuff - speckle variance withthout any threshold
+diffBuff - substracting the two bands and normalizing to 0-255
+speckVarBuff - dspeckle variance after threshold
+diffNormBuff - diffBuff divided by signalBuff
+
+frameInd - 1 if outputFrameNum = 1 (we are in 2D), else runs on the 3D volume and averages each Bscan
+
+interf - interferogram of each Bscan, after certain filter averaging
+frames2process - [] to process all frames, else based on 3D volume
+avgLogBscan - 20*log of the average of all the Bscan
+numOfFrames - equals to bscanavg, how many B scan avg where taken
+frameRange - array from 1:numOfFrames
+linBscan - absolute value of the complex image of each Bscan, after filter averaging
+apodization - reference arm signal for each Bscan (usually averaged to two dimensions)
+timeStamp - saves the time the scan was taken
+
+saveAlgoData - was originally set to 0; Orly: needed for creating algorithms for explaining the steps in the algorithm
+kVect - version of the chirp_vect
+balanceFuncName - 'balance.mat'
+balanceEnable - probably means that if 1 - needs to balance the bands
+
+BscanCpx - complex Bscan image (not averaged - all bscan exist)
+BscanCpxNorm - complex Bscan image (not averaged - all bscan exist) but normalized
+band1spatial - absolute Bscan image of band1 (not averaged - all bscan exist)
+band2spatial - absolute Bscan image of band (not averaged - all bscan exist)
+compoundImg - Image with the two bands (no substraction)
+diffImg - it seems like this is the image that shows the substraction of the bands
+balanceFunc - from SpectralParam
+h - saves 4 figures showing the bands results
